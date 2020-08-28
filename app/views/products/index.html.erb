@@ -1,0 +1,11 @@
+<h1> Produtos anunciados </h1>
+
+<% @products.each do |product| %>
+  <% if product.user.email.split("@").last == current_user.email.split('@').last %>
+    <ul>
+      <li> <%= product.user.name %> </li>
+      <li> <%= product.name %> </li>
+      <li> <%= product.price %> </li>
+    </ul>
+  <% end %>
+<% end %>

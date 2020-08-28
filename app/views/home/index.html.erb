@@ -1,1 +1,16 @@
+<% if user_signed_in? %>
+  <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+<% end %>
+
 <h1> Bem vindo ao marketplace </h1>
+
+
+<% if current_user.role.blank? || current_user.department.blank? %>
+  <h4> Complete seu perfil para poder negociar. </h4>
+<% else %>
+  <%= link_to 'Cadastrar produto', new_product_path %>
+<% end%>
+
+<div>
+  <%= link_to 'Ver produtos', products_path %>
+</div>

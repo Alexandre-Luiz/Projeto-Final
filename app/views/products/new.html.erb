@@ -1,0 +1,32 @@
+<h1> Cadastro de Produto </h1>
+
+<%= form_with model: @product, local: true do |form| %>
+  <div>
+    <%= form.label :name, 'Nome' %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :category_id, 'Categoria' %>
+    <%= form.select(:category_id, 
+                    options_for_select([['Eletrônicos', 1],
+                                        ['Automotivo', 2],
+                                        ['Esporte', 3],
+                                        ['Cozinha', 4],
+                                        ['Papelaria e Escritório', 5],
+                                        ['Roupas e vestuário', 6],
+                                        ['Ferramentas', 7],
+                                        ['Brinquedos e games', 8],
+                                        ['Outros', 9]],2)) %>
+  </div>
+  <div>
+    <%= form.label :description, 'Descrição' %>
+    <%= form.text_area :description %>
+  </div>
+  <div>
+    <%= form.label :price, 'Preço' %>
+    <%= form.text_field :price %>
+  </div>
+
+  <%= form.submit 'Cadastrar '%>
+
+<% end %>
