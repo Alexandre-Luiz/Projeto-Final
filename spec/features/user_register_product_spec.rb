@@ -6,6 +6,7 @@ feature 'User register product to sell'do
     
     login_as(user, scope: :user)
     visit root_path
+    click_on 'Ver produtos'
     click_on 'Cadastrar produto'
     fill_in 'Nome', with: 'Teclado'
     select 'Eletrônicos', from: 'Categoria'
@@ -13,8 +14,8 @@ feature 'User register product to sell'do
     fill_in 'Preço', with: '200'
     click_on 'Cadastrar'
 
-    #expect(current_path).to eq product_path(Product.last)
-    expect(page).to have_content(current_user.name)
+    expect(current_path).to eq product_path(Product.last)
+    expect(page).to have_content(user.name)
     expect(page).to have_content('Produto cadastrado com sucesso!')
     expect(page).to have_content('Teclado')
     expect(page).to have_content('Eletrônicos')
