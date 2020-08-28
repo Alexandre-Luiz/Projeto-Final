@@ -13,11 +13,13 @@ class ProductsController < ApplicationController
   end
 
   def create
-    puts '====='
+    puts '======='
     puts params
-    puts '====='
-    @product = Product.create(product_params)
-    redirect_to @product, notice: 'Produto colado a venda com sucesso'
+    puts '======='
+    @product = Product.new(product_params)
+    @product.user = current_user
+    @product.save!
+    redirect_to @product, notice: 'Produto colocado a venda com sucesso!'
   end
 
   private

@@ -39,9 +39,11 @@ feature 'User view all products' do
     click_on 'Ver produtos'
     click_on 'Ver detalhes'
 
+    expect(current_path).to eq product_path(Product.last)
     expect(page).to have_content(user.name)
     expect(page).to have_content(user.email)
     expect(page).to have_content('Teclado mecânico Logitech')
+    expect(page).to have_content('Eletrônicos')
     expect(page).to have_content('R$ 200,00')
     expect(page).to have_content('Teclado com pouquíssimo uso. Possui RGB')
 

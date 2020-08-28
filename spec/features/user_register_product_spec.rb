@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User register product to sell'do
-  scenario 'successfuly' do
+  scenario 'successfully' do
     user = User.create!(name: 'Fulano', password: '123456789', email: 'fulano@test.com')
     
     login_as(user, scope: :user)
@@ -16,11 +16,10 @@ feature 'User register product to sell'do
 
     expect(current_path).to eq product_path(Product.last)
     expect(page).to have_content(user.name)
-    expect(page).to have_content('Produto cadastrado com sucesso!')
+    expect(page).to have_content('Produto colocado a venda com sucesso!')
     expect(page).to have_content('Teclado')
     expect(page).to have_content('Eletrônicos')
     expect(page).to have_content('R$ 200')
-    expect()
   end
 
   xscenario 'but must finish his profile first' do

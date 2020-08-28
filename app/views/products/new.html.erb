@@ -6,17 +6,17 @@
     <%= form.text_field :name %>
   </div>
   <div>
-    <%= form.label :category_id, 'Categoria' %>
-    <%= form.select(:category_id, 
-                    options_for_select([['Eletrônicos', 1],
-                                        ['Automotivo', 2],
-                                        ['Esporte', 3],
-                                        ['Cozinha', 4],
-                                        ['Papelaria e Escritório', 5],
-                                        ['Roupas e vestuário', 6],
-                                        ['Ferramentas', 7],
-                                        ['Brinquedos e games', 8],
-                                        ['Outros', 9]],2)) %>
+    <%= form.label :category, 'Categoria' %>
+    <%= form.select :category, 
+                    options_for_select([['Eletrônicos'],
+                                        ['Automotivo'],
+                                        ['Esporte'],
+                                        ['Cozinha'],
+                                        ['Papelaria e Escritório'],
+                                        ['Roupas e vestuário'],
+                                        ['Ferramentas'],
+                                        ['Brinquedos e games'],
+                                        ['Outros']]) %>
   </div>
   <div>
     <%= form.label :description, 'Descrição' %>

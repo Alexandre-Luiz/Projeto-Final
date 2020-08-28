@@ -2,7 +2,7 @@
   <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
 <% end %>
 
-<h1> Bem vindo ao marketplace </h1>
+<h1> Bem vindo ao marketplace <%= current_user.email %> </h1>
 
 
 <% if current_user.role.blank? || current_user.department.blank? %>
