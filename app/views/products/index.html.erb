@@ -1,27 +1,24 @@
-<h1> Produtos anunciados </h1>
+<h1 class="text-center" > Produtos Anunciados </h1>
 
-<div>
-  <%= link_to 'Cadastrar produto', new_product_path %>
+<div class="text-center">
+  <%= link_to 'Cadastrar Produto', new_product_path %>
 </div>
 
 <% @products.each do |product| %>
   <% if product.user.email.split("@").last == current_user.email.split('@').last %>
-    <div>
-      <ul>
-        <li> <%= "#{Product.human_attribute_name(:user)}: #{product.user.name}" %> </li>
-        <li> <%= "#{Product.human_attribute_name(:name)}: #{product.name}" %> </li>
-        <li> <%= "#{Product.human_attribute_name(:price)}: #{number_to_currency product.price}" %> </li>
-      </ul>
+    <div class="container">
+      <div>
+        <ul>
+          <li> <%= "#{Product.human_attribute_name(:name)}: #{product.name}" %> </li>
+          <li> <%= "#{Product.human_attribute_name(:price)}: #{number_to_currency product.price}" %> </li>
+          <li> <%= "#{Product.human_attribute_name(:user)}: #{product.user.name}" %> </li>
+        </ul>
+      </div>
+        <div>
+          <%= link_to 'Ver detalhes', product_path(id: product.id) %>
+        </div>
     </div>
-    <div>
-      <%= link_to 'Ver detalhes', product_path(id: product.id) %>
-    </div>
-    <div>
-      <%= link_to 'Editar' %>
-    </div>
-    <div>
-      <%= link_to 'Deletar' %>
-    </div>
+
   <% end %>
 <% end %>
 

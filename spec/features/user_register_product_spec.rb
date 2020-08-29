@@ -7,7 +7,7 @@ feature 'User register product to sell'do
     login_as(user, scope: :user)
     visit root_path
     click_on 'Ver produtos'
-    click_on 'Cadastrar produto'
+    click_on 'Cadastrar Produto'
     fill_in 'Nome', with: 'Teclado'
     select 'Eletrônicos', from: 'Categoria'
     fill_in 'Descrição', with: 'Teclado mecânico com pouquíssimo uso com RGB'

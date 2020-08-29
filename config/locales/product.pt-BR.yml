@@ -5,7 +5,7 @@ pt-BR:
       product: Produtos
     attributes:
       product:
-        name: Nome
+        name: Produto
         category: Categoria
         description: Descrição
         price: Preço
