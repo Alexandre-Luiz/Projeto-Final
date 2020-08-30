@@ -18,8 +18,11 @@ class ProductsController < ApplicationController
     puts '======='
     @product = Product.new(product_params)
     @product.user = current_user
-    @product.save!
-    redirect_to @product, notice: 'Produto colocado a venda com sucesso!'
+    if @product.save
+      redirect_to @product, notice: 'Produto colocado a venda com sucesso!'
+    else
+      render :new
+    end
   end
 
   private

@@ -4,9 +4,11 @@
 
 <h1 class="text-center" > Produtos Anunciados </h1>
 
-<div class="text-center">
-  <%= link_to 'Cadastrar Produto', new_product_path %>
-</div>
+<% if current_user.role.present? && current_user.department.present? && current_user.name.present? %>
+  <div class="text-center">
+    <%= button_to 'Cadastrar Produto', new_product_path, method: :get %>
+  </div>
+<% end%>
 
 <% @products.each do |product| %>
   <% if product.user.email.split("@").last == current_user.email.split('@').last %>
