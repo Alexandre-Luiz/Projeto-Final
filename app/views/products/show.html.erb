@@ -14,7 +14,7 @@
     <li> <%= "#{Product.human_attribute_name(:description)}: #{@product.description}" %> </li>
   </ul>
   <div>
-    <%= link_to 'Comprar' %>
+    <%= button_to 'Comprar', method: :get %>
   </div>
   <div>
     <%= link_to 'Editar' %>

@@ -24,6 +24,7 @@ feature 'User view all products' do
     expect(page).to have_content(user.name)
     expect(page).to have_content('Bola de futebol')
     expect(page).to have_content('R$ 500,00')
+    expect(page).to have_link('Voltar', href: root_path)
     expect(page).not_to have_content('PS4')
     expect(page).not_to have_content(another_user.name)
   end
