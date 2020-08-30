@@ -44,6 +44,4 @@ feature 'User view home page'do
     expect(current_path).to eq(new_user_session_path)
   end
 
-  xscenario 'user should finish his profile to register products' do
-  end
 end

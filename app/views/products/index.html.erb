@@ -4,6 +4,14 @@
 
 <h1 class="text-center" > Produtos Anunciados </h1>
 
+<div class="text-center">
+  <%= form_with url: products_search_path, local: true, method: :get do |form| %>
+    <%= form.label :q, 'Busca' %>
+    <%= form.text_field :q, placeholder: 'Produto ou categoria' %>
+    <%= form.submit 'Buscar' %>
+  <% end %>
+</div>
+
 <% if current_user.role.present? && current_user.department.present? && current_user.name.present? %>
   <div class="text-center">
     <%= button_to 'Cadastrar Produto', new_product_path, method: :get %>

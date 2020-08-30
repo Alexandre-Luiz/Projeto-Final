@@ -25,6 +25,12 @@ class ProductsController < ApplicationController
     end
   end
 
+  def search
+    @products = Product.where('name LIKE ? OR category LIKE ?',
+                              "%#{params[:q]}%", "%#{params[:q]}%")
+    render :index
+  end
+
   private
   
   def product_params

@@ -10,7 +10,7 @@ feature 'User register product to sell'do
     visit root_path
     click_on 'Ver produtos'
     click_on 'Cadastrar Produto'
-    fill_in 'Nome', with: 'Teclado'
+    fill_in 'Produto', with: 'Teclado'
     select 'Eletrônicos', from: 'Categoria'
     fill_in 'Descrição', with: 'Teclado mecânico com pouquíssimo uso com RGB'
     fill_in 'Preço', with: '200'

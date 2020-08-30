@@ -33,10 +33,13 @@
   </div>
   <div>
     <%= form.label :price, 'Preço' %>
-    <%= form.text_field :price %>
+    <%= form.number_field :price %>
   </div>
 
   <%= form.submit 'Cadastrar '%>
 <% end %>
+</div>
 
+<div>
+  <%= link_to 'Voltar', products_path%>
 </div>
