@@ -1,20 +1,16 @@
 <% if user_signed_in? %>
-  <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+  <%= link_to 'Perfil' %> |
+  <%= link_to 'Sair', destroy_user_session_path, method: :delete %>  
 <% end %>
 
-<h1> Bem vindo ao marketplace <%= current_user.email %> </h1>
-
-
-<% if :profile_complete? %>
-  <h4> Complete seu perfil para poder negociar - <%= link_to 'Editar perfil', edit_user_registration_path(params[:id]) %></h4>
+<% if current_user.role.blank? || current_user.department.blank? || current_user.name.blank?
+ %>
+  <h1 class="text-center" > Bem vindo ao Marketplace </h1>
+  <h4 class="text-center" > Complete seu perfil para poder negociar - <%= link_to 'Editar perfil', edit_user_registration_path(params[:id]) %></h4>
 <% else %>
-  <%= link_to 'Cadastrar produto', new_product_path %>
+  <h1 class="text-center"> Bem vindo ao marketplace, <%= current_user.name %> </h1>
 <% end%>
 
-<div>
-  <%= link_to 'Ver produtos', products_path %>
-</div>
-
-<div>
-  <h5> nome: <%= current_user.name%> </h5>
+<div class="text-center" >
+  <%= button_to 'Ver produtos', products_path, method: :get %>
 </div>

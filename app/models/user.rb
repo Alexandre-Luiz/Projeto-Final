@@ -7,7 +7,4 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  def profile_complete?
-    current_user.role.blank? || current_user.department.blank? || current_user.name.blank?
-  end
 end

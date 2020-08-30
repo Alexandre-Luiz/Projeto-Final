@@ -19,7 +19,7 @@ feature 'User view home page'do
     click_on 'Entrar'
     
 
-    expect(page).to have_content('Bem vindo ao marketplace')
+    expect(page).to have_content('Bem vindo ao Marketplace')
     expect(page).to have_content('Login efetuado com sucesso.')
     expect(page).to have_link('Sair', href: destroy_user_session_path)
   end
@@ -30,7 +30,7 @@ feature 'User view home page'do
     login_as(user, scope: :user)
     visit root_path
     
-    expect(page).to have_content('Complete seu perfil para poder negociar.')
+    expect(page).to have_content('Complete seu perfil para poder negociar')
     expect(page).not_to have_link('Cadastrar produto')
   end
 
@@ -42,7 +42,8 @@ feature 'User view home page'do
     click_on 'Sair'
 
     expect(current_path).to eq(new_user_session_path)
-    
   end
 
+  xscenario 'user should finish his profile to register products' do
+  end
 end
