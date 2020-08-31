@@ -1,7 +1,8 @@
 class ProductsController < ApplicationController
   
   def index
-    @products = Product.all
+    email_domain = current_user.email.split("@").last 
+    @products = Product.joins(:user).where("users.email like ?", "%#{email_domain}")
   end
 
   def show
@@ -13,21 +14,21 @@ class ProductsController < ApplicationController
   end
 
   def create
-    puts '======='
-    puts params
-    puts '======='
     @product = Product.new(product_params)
     @product.user = current_user
     if @product.save
       redirect_to @product, notice: 'Produto colocado a venda com sucesso!'
     else
+      #flash.alert = 'Por favor, complete o perfil para cadastrar produto'
       render :new
     end
   end
 
   def search
-    @products = Product.where('name LIKE ? OR category LIKE ?',
-                              "%#{params[:q]}%", "%#{params[:q]}%")
+    email_domain = current_user.email.split("@").last 
+    @products = Product.joins(:user).where("users.email like ?", "%#{email_domain}")
+                                    .where('products.name LIKE ? OR products.category LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%")
+    #@products = Product.where('name LIKE ? OR category LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%")
     render :index
   end
 

@@ -3,11 +3,11 @@
   <%= link_to 'Sair', destroy_user_session_path, method: :delete %>  
 <% end %>
 
-<% if current_user.role.blank? || current_user.department.blank? || current_user.name.blank? %>
+<% if current_user.user_full_profile? %>
+  <h1 class="text-center"> Bem vindo ao Marketplace, <%= current_user.name %> </h1>
+<% else %>
   <h1 class="text-center" > Bem vindo ao Marketplace </h1>
   <h4 class="text-center" > Complete seu perfil para poder negociar - <%= link_to 'Editar perfil', edit_user_registration_path(params[:id]) %></h4>
-<% else %>
-  <h1 class="text-center"> Bem vindo ao Marketplace, <%= current_user.name %> </h1>
 <% end%>
 
 <div class="text-center" >
