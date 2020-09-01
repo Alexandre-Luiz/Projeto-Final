@@ -1,8 +1,11 @@
+  <div>
+    <%= link_to 'Editar' %> | <%= link_to 'Deletar' %>
+  </div>
 <div>
   <h1> <%= @product.name %> </h1>
 </div>
 <div>
-  <h3> <%= "#{Product.human_attribute_name(:price)}: #{number_to_currency @product.price}" %> </h3>
+  <h3 > <%= "#{Product.human_attribute_name(:price)}: #{number_to_currency @product.price}" %> </h3>
 </div>
 
 <div>
@@ -17,9 +20,18 @@
     <%= button_to 'Comprar', method: :get %>
   </div>
   <div>
-    <%= link_to 'Editar' %>
+    <%= link_to 'Fazer uma pergunta', new_product_question_path(params[:id]) %>
+    <% #link_to 'Fazer uma pergunta', new_product_question_path(@product.id) %>
   </div>
-  <div>
-    <%= link_to 'Deletar' %>
-  </div>
+</div>
+
+<%# Renderizando as perguntas %>
+<div>
+  <h3> Perguntas: </h3>
+</div>
+<div>
+  <% @product.questions.each do |question| %>
+    <span> Usuário: <%= @product.user.name %> </span> 
+   <p> P: <%= question.content %> </p>
+  <% end %>
 </div>

@@ -1,0 +1,13 @@
+<h2> Deixe sua dúvida sobre o produto - <%= @product.name %> </h2>
+
+<div>
+  <%= form_with model: [@product, @question], local: true do |form| %>
+    <div>
+      <%= form.label :content, 'Qual a sua dúvida?' %>
+    </div>
+    <%= form.text_area :content, placeholder: 'Faça sua pergunta', size: '80x5' %>
+    <div>
+      <%= form.submit 'Postar' %>
+    </div>
+  <% end %>
+</div>

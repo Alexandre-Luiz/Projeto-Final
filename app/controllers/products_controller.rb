@@ -16,10 +16,10 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.user = current_user
-    if @product.save
+    if current_user.user_full_profile? && @product.save
       redirect_to @product, notice: 'Produto colocado a venda com sucesso!'
     else
-      #flash.alert = 'Por favor, complete o perfil para cadastrar produto'
+      flash.alert = 'Por favor, complete o perfil para cadastrar produto'
       render :new
     end
   end
@@ -31,6 +31,7 @@ class ProductsController < ApplicationController
     #@products = Product.where('name LIKE ? OR category LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%")
     render :index
   end
+
 
   private
   
