@@ -1,17 +1,14 @@
 class QuestionsController < ApplicationController
 
-  def index
-    #@product = Product.find(params[:product_id])
-    #@questions = Question.where()
-  end
-
-
   def new
     @product = Product.find(params[:product_id])
     @question = Question.new
   end
 
   def create
+    puts '====='
+    puts params
+    puts '====='
     @product = Product.find(params[:product_id])
     @question = Question.new(question_params)
   
@@ -26,6 +23,6 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question)
-          .permit(:content)
+          .permit(:content, :product_id, :user_id)
   end
 end

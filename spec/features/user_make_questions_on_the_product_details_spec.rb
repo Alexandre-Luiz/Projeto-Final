@@ -19,7 +19,6 @@ feature 'User makes public questions on products' do
     expect(current_path).to eq product_path(Product.last)
     expect(page).to have_content('Teclado membrana Bright')
     expect(page).to have_content('Padrão do teclado é nacional (ABNT) ou internacional?')
-
   end
 
   scenario 'and anyone of the same company can see it' do
@@ -41,8 +40,4 @@ feature 'User makes public questions on products' do
     expect(page).to have_content('Usuário: Fulano')
     expect(page).to have_content('As teclas possuem iluminação?')
   end
-  xscenario 'and the owner of the product answers it' do
-    
-  end
-
 end

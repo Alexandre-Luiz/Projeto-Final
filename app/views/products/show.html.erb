@@ -31,7 +31,14 @@
 </div>
 <div>
   <% @product.questions.each do |question| %>
-    <span> Usuário: <%= @product.user.name %> </span> 
-   <p> P: <%= question.content %> </p>
+    <div>
+      <span> Usuário: <%= @product.user.name %> - 
+                      <%= link_to 'Responder', new_product_question_answer_path(@product, question) %> </span> 
+      <p> P: <%= question.content %> </p>
+      
+      <p> R: <%= question.answer.content %> </p>
+    </div>
   <% end %>
 </div>
+
+
