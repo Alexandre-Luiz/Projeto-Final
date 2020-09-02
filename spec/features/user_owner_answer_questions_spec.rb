@@ -15,17 +15,18 @@ feature 'User owner of the ad asnwers the questions made in its details' do
     login_as(user, scope: :user)
     visit root_path
     click_on 'Ver produtos'
-    find_link('Ver detalhes', href: product_path(Product.last)).click
+    #find_link('Ver detalhes', href: product_path(Product.last)).click
+    click_on 'Ver detalhes'
     click_on 'Responder'
     fill_in 'Resposta', with: 'Não possuem RGB. É um teclado básico.'
     click_on 'Enviar'
 
     expect(current_path).to eq product_path(Product.last)
     expect(page).to have_content('P: As teclas possuem iluminação?')
-    expect(page).to have_content('Não possuem. É um teclado básico.')
+    expect(page).to have_content('Não possuem RGB. É um teclado básico.')
   end
 
   xscenario 'but only the owner can answer it' do
-    
+
   end
 end

@@ -29,16 +29,18 @@
 <div>
   <h3> Perguntas: </h3>
 </div>
-<div>
-  <% @product.questions.each do |question| %>
-    <div>
-      <span> Usuário: <%= @product.user.name %> - 
-                      <%= link_to 'Responder', new_product_question_answer_path(@product, question) %> </span> 
-      <p> P: <%= question.content %> </p>
-      
-      <p> R: <%= question.answer.content %> </p>
-    </div>
-  <% end %>
-</div>
+
+<% @product.questions.each do |question| %>
+  <div>
+    <p> Usuário: <%= @product.user.name %> - 
+                  <%= link_to 'Responder', new_product_question_answer_path(@product, question) %> </p> 
+    <p> P: <%= question.content %> 
+      <% if question.answer %>
+        <p> R: <%= question.answer.content %> </p>
+      <% end %>
+    </p>
+  </div>
+<% end %>
+
 
 
