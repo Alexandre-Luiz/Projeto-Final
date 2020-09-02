@@ -25,7 +25,6 @@
   </div>
 </div>
 
-<%# Renderizando as perguntas %>
 <% if @product.questions.any? %>
   <div>
     <h3> Perguntas: </h3>
@@ -37,17 +36,20 @@
 <% @product.questions.each do |question| %>
   <div>
     <p> Usuário: <%= @product.user.name  %> 
+        - <%= l question.created_at %>
       <% if current_user == @product.user %>
         - <%= link_to 'Responder', new_product_question_answer_path(@product, question) %> 
       <% end %>
     </p>
-    <p> P: <%= question.content %> 
+    <p> <b>Pergunta:</b>  <%= question.content %>
       <% if question.answer %>
-        <p> R: <%= question.answer.content %> </p>
+        <p> <b>R:</b> <%= question.answer.content %> </p>
       <% end %>
     </p>
   </div>
 <% end %>
+
+<%= link_to 'Voltar', products_path %>
 
 
 

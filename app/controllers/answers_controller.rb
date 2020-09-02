@@ -16,9 +16,13 @@ class AnswersController < ApplicationController
     @answer.product = @product
     @answer.question = @question
     @answer.user = current_user
-    @answer.save!
-
-    redirect_to @product
+    if current_user == @product.user
+      @answer.save!
+      redirect_to @product
+    else
+      flash.notice = 'Sem autorização para responder sobre esse produto'
+      render :new
+    end
   end
   
   private

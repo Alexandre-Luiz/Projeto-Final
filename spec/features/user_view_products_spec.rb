@@ -47,6 +47,20 @@ feature 'User view all products' do
     expect(page).to have_content('Eletrônicos')
     expect(page).to have_content('R$ 200,00')
     expect(page).to have_content('Teclado com pouquíssimo uso. Possui RGB')
+  end
 
+  scenario 'and goes back to menu' do
+    user = User.create!(name: 'Fernando', password: '123456789', email: 'fernando@test.com')
+    Product.create!(name: 'Teclado mecânico Logitech', category: 'Eletrônicos', 
+                    description: 'Teclado com pouquíssimo uso. Possui RGB', 
+                    price: 200, user: user)
+    
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Ver produtos'
+    click_on 'Ver detalhes'
+    click_on 'Voltar'
+
+    expect(current_path).to eq products_path
   end
 end
