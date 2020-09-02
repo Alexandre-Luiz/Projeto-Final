@@ -9,14 +9,9 @@ class AnswersController < ApplicationController
   end
 
   def create
-    puts '====='
-    puts params
-    puts '====='
     @product = Product.find(params[:product_id])
     @question = Question.find(params[:question_id])
-    #@answer = Answer.new(answer_params)
     @answer = @question.build_answer(answer_params)
-    
     
     @answer.product = @product
     @answer.question = @question

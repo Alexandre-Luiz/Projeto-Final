@@ -26,14 +26,21 @@
 </div>
 
 <%# Renderizando as perguntas %>
-<div>
-  <h3> Perguntas: </h3>
-</div>
+<% if @product.questions.any? %>
+  <div>
+    <h3> Perguntas: </h3>
+  </div>
+<% else %>
+  <p> Ainda não há perguntas para esse produto. </p>
+<% end %>
 
 <% @product.questions.each do |question| %>
   <div>
-    <p> Usuário: <%= @product.user.name %> - 
-                  <%= link_to 'Responder', new_product_question_answer_path(@product, question) %> </p> 
+    <p> Usuário: <%= @product.user.name  %> 
+      <% if current_user == @product.user %>
+        - <%= link_to 'Responder', new_product_question_answer_path(@product, question) %> 
+      <% end %>
+    </p>
     <p> P: <%= question.content %> 
       <% if question.answer %>
         <p> R: <%= question.answer.content %> </p>
