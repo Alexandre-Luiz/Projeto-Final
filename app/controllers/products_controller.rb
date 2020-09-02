@@ -24,6 +24,17 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    @product = Product.find(params[:id])
+    if current_user == @product.user
+      @product.destroy
+      redirect_to products_path
+    else
+      flash.alert = 'Sem autorização para apagar este anúncio.'
+      render :show 
+    end
+  end
+
   def search
     email_domain = current_user.email.split("@").last 
     @products = Product.joins(:user).where("users.email like ?", "%#{email_domain}")
@@ -32,11 +43,11 @@ class ProductsController < ApplicationController
     render :index
   end
 
-
   private
   
   def product_params
     params.require(:product)
           .permit(:name, :category, :description, :price, :user_id)
   end
+
 end
