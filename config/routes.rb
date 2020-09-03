@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   
   get 'products/search', to: 'products#search'
   resources :products do
-    #resources :questions, on: :collection
+    resources :orders, only: [:show, :new, :create]
+  
     resources :questions, only: [:new, :create] do
       resources :answers, only: [:new, :create]
     end

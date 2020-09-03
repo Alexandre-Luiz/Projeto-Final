@@ -18,18 +18,22 @@
   </div>
 <% end%>
 
-<% @products.each do |product| %>
-  <div class="container">
-    <div>
-      <ul>
-        <li> <%= "#{Product.human_attribute_name(:name)}: #{product.name}" %> </li>
-        <li> <%= "#{Product.human_attribute_name(:price)}: #{number_to_currency product.price}" %> </li>
-        <li> <%= "#{Product.human_attribute_name(:user)}: #{product.user.name}" %> </li>
-      </ul>
-    </div>
-      <div>
-        <%= link_to 'Ver detalhes', product_path(id: product.id) %>
+<div class = "row">
+  <div class = "w-50 mx-auto">
+    <% @products.each do |product| %>
+      <div class="container">
+        <div>
+          <ul>
+            <li> <%= "#{Product.human_attribute_name(:name)}: #{product.name}" %> </li>
+            <li> <%= "#{Product.human_attribute_name(:price)}: #{number_to_currency product.price}" %> </li>
+            <li> <%= "#{Product.human_attribute_name(:user)}: #{product.user.name}" %> </li>
+          </ul>
+        </div>
+          <div>
+            <%= link_to 'Ver detalhes', product_path(id: product.id) %>
+          </div>
       </div>
+    <% end %>
   </div>
-<% end %>
+</div>
 

@@ -1,0 +1,21 @@
+
+<h2> Informações do Produto </h2>
+  <%= render partial: 'products/product_details', locals: { product: @product } %>
+<div>
+  <h2> Resumo do pedido: </h2>
+  <i> (O vendedor irá confirmar as informações e finalizará o pedido) </i>
+</div>
+<div>
+  <ul>
+    <li> <%= @order.user %> </li>
+    <li> <%= @order.payment_method %> </li>
+    <li> Preço Original: <%= number_to_currency @order.product_price %> </li>
+    <li> <%= number_to_currency @order.discount %> </li>
+    <li> Preço: <%= number_to_currency @order.price_calculation %> </li>
+    <li> <%= @order.address %> </li>
+    <li> <%= @order.comment %> </li>
+  </ul>
+</div>
+
+<%= link_to 'Voltar', products_path %>
+

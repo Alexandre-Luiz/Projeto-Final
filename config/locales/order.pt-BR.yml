@@ -1,0 +1,11 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      order: Pedido
+    attributes:
+      order:
+        discount: Desconto
+        payment_method: Forma de pagamento
+        address: Endereço
+        comment: Comentários

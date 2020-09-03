@@ -1,21 +1,25 @@
-<div>
-  <h1> <%= @user.name %> </h1>
-</div>
+<div class="row">
+  <div class="w-0 mx-auto">
+    <div>
+      <h1> <%= @user.name %> </h1>
+    </div>
 
-<div>
-  <h3> Detalhes: </h3>
-  <ul>
-    <li> <%= "#{User.human_attribute_name(:role)}: #{@user.role}" %> </li>
-    <li> <%= "#{User.human_attribute_name(:department)}: #{@user.department}" %> </li>
-    <li> <%= "#{User.human_attribute_name(:email)}: #{@user.email}" %> </li>
-  </ul>
-</div>
+    <div>
+      <h3> Detalhes: </h3>
+      <ul>
+        <li> <%= "#{User.human_attribute_name(:role)}: #{@user.role}" %> </li>
+        <li> <%= "#{User.human_attribute_name(:department)}: #{@user.department}" %> </li>
+        <li> <%= "#{User.human_attribute_name(:email)}: #{@user.email}" %> </li>
+      </ul>
+    </div>
 
-<div>
-  <%= link_to 'Editar Perfil', edit_user_registration_path(params[:id]) %> |
-  <%= link_to 'Histórico de transações' %>
-</div>
+    <div>
+      <%= link_to 'Editar Perfil', edit_user_registration_path(params[:id]) %> |
+      <%= link_to 'Histórico de transações' %>
+    </div>
 
-<div>
-  <%= link_to 'Voltar', root_path %>
+    <div>
+      <%= link_to 'Voltar', root_path %>
+    </div>
+  </div>
 </div>

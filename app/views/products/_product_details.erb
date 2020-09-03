@@ -1,0 +1,15 @@
+<div>
+  <h1> <%= product.name %> </h1>
+</div>
+<div>
+  <h3 > <%= "#{Product.human_attribute_name(:price)}: #{number_to_currency product.price}" %> </h3>
+</div>
+
+<div>
+  <h3> Detalhes: </h5>
+  <ul>
+    <li> <%= "#{Product.human_attribute_name(:user)}: #{product.user.name}" %> </li>
+    <li> <%= "#{User.human_attribute_name(:email)}: #{product.user.email}" %> </li>
+    <li> <%= "#{Product.human_attribute_name(:category)}: #{product.category}" %> </li>
+    <li> <%= "#{Product.human_attribute_name(:description)}: #{product.description}" %> </li>
+  </ul>

@@ -2,23 +2,12 @@
     <%= link_to 'Editar', edit_product_path(params[:id]) %> | 
     <%= link_to 'Apagar anúncio', product_path(params[:id]), method: :delete, data: {confirm: 'Tem certeza que deseja apagar o anúncio?'} %>
   </div>
-<div>
-  <h1> <%= @product.name %> </h1>
-</div>
-<div>
-  <h3 > <%= "#{Product.human_attribute_name(:price)}: #{number_to_currency @product.price}" %> </h3>
-</div>
 
-<div>
-  <h3> Detalhes: </h5>
-  <ul>
-    <li> <%= "#{Product.human_attribute_name(:user)}: #{@product.user.name}" %> </li>
-    <li> <%= "#{User.human_attribute_name(:email)}: #{@product.user.email}" %> </li>
-    <li> <%= "#{Product.human_attribute_name(:category)}: #{@product.category}" %> </li>
-    <li> <%= "#{Product.human_attribute_name(:description)}: #{@product.description}" %> </li>
-  </ul>
+  <%= render partial: 'product_details', locals: { product: @product } %>
+
+
   <div>
-    <%= button_to 'Comprar', method: :get %>
+    <%= button_to 'Comprar', new_product_order_path(params[:id]), method: :get %>
   </div>
   <div>
     <%= link_to 'Fazer uma pergunta', new_product_question_path(params[:id]) %>

@@ -1,0 +1,46 @@
+<div>
+  <%= render partial: 'products/product_details', locals: { product: @product } %>
+</div>
+
+
+<div>
+  <h3> Por favor preencha as informações adicionais para efetivação da compra: </h3>
+</div>
+
+<div>
+  <%= form_with model: [@product, @order], local: true do |form| %>
+    <div class="form-group">
+      <div>
+        <%= form.label :payment_method, 'Forma de pagamento' %>
+      </div>
+        <%= form.select :payment_method, 
+                        options_for_select([['Transferência bancária'],
+                                          ['Dinheiro'],
+                                          ['Cheque']]), prompt: 'Selecione uma forma de pagamento' %>
+    </div>
+    <div class="form-group">
+      <div>
+        <%= form.label :discount, 'Desconto' %> <i> (se houver, em reais) </i>
+      </div>
+        <%= form.number_field :discount %>
+    </div>                               
+    <div class="form-group">
+      <div>
+        <%= form.label :address, 'Endereço para entrega' %> <i> (deixar em branco quando não houver entrega) </i>
+      </div>
+        <%= form.text_field :address %>
+    </div>
+    <div class="form-group">
+      <div>
+        <%= form.label :comment, 'Comentários adicionais:' %>
+      </div>
+        <%= form.text_area :comment, size: '50x5' %>
+    </div>
+
+    <div class="form-group">
+        <%= form.hidden_field :product_price, :value => @product.price %>
+    </div>
+
+    <%= form.submit 'Efetuar compra' %>
+  <% end %>
+</div>
