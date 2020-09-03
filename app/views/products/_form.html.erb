@@ -1,0 +1,43 @@
+<% if product.errors.any? %>
+  <ul>
+    <% product.errors.full_messages.each do |message| %>
+      <li> <%= message %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div>
+<%= form_with model: product, local: true do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :category, 'Categoria' %>
+    <%= form.select :category, 
+                     options_for_select([['Eletrônicos'],
+                                        ['Automotivo'],
+                                        ['Esporte'],
+                                        ['Cozinha'],
+                                        ['Papelaria e Escritório'],
+                                        ['Roupas e vestuário'],
+                                        ['Ferramentas'],
+                                        ['Brinquedos e games'],
+                                        ['Outros']]), prompt: 'Selecione uma categoria' %>
+  </div>
+  <div>
+    <%= form.label :description, 'Descrição' %>
+    <%= form.text_area :description %>
+  </div>
+  <div>
+    <%= form.label :price, 'Preço' %>
+    <%= form.number_field :price %>
+  </div>
+
+  <%= form.submit 'Cadastrar '%>
+<% end %>
+</div>
+
+<div>
+  <%= link_to 'Voltar', products_path %>
+</div>

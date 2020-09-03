@@ -24,6 +24,20 @@ class ProductsController < ApplicationController
     end
   end
 
+  def edit
+    @product = Product.find(params[:id])
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    if current_user == @product.user && @product.update(product_params)
+      redirect_to @product, notice: 'Edição feita com sucesso.'
+    else
+      flash.alert = 'Sem autorização para editar este anúncio.'
+      render :edit
+    end
+  end
+
   def destroy
     @product = Product.find(params[:id])
     if current_user == @product.user

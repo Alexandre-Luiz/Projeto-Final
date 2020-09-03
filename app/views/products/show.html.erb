@@ -1,5 +1,5 @@
   <div>
-    <%= link_to 'Editar' %> | 
+    <%= link_to 'Editar', edit_product_path(params[:id]) %> | 
     <%= link_to 'Apagar anúncio', product_path(params[:id]), method: :delete, data: {confirm: 'Tem certeza que deseja apagar o anúncio?'} %>
   </div>
 <div>

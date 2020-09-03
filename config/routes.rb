@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   
   get 'products/search', to: 'products#search'
-  resources :products, only: [:index, :show, :new, :create, :destroy] do
+  resources :products do
     #resources :questions, on: :collection
     resources :questions, only: [:new, :create] do
       resources :answers, only: [:new, :create]
@@ -12,5 +12,4 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show]
-
 end
