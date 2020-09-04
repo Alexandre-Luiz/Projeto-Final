@@ -16,11 +16,10 @@ class OrdersController < ApplicationController
     
     @order.user = current_user
     @order.product = @product
-    puts '===='
-    puts params
-    puts '===='
-    @order.save!
 
+    @order.save!
+    # Tornando o anúncio indisponível após criação do pedido
+    @product.disabled!
     redirect_to [@product, @order], notice: 'Pedido realizado com sucesso!'
   end
 

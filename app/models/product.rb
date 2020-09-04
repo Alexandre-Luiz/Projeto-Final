@@ -4,6 +4,8 @@ class Product < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_one :order, dependent: :destroy
 
+  enum status: { enabled: 0, disabled: 10}
+
   validates :name, :category, :description, :price,
             presence: true
 

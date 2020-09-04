@@ -3,6 +3,8 @@ class ProductsController < ApplicationController
   def index
     email_domain = current_user.email.split("@").last 
     @products = Product.joins(:user).where("users.email like ?", "%#{email_domain}")
+                                    .enabled
+    # Ao invés do scope do enum, poderia usar - where(status: 'enabled')
   end
 
   def show
@@ -53,6 +55,7 @@ class ProductsController < ApplicationController
     email_domain = current_user.email.split("@").last 
     @products = Product.joins(:user).where("users.email like ?", "%#{email_domain}")
                                     .where('products.name LIKE ? OR products.category LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%")
+                                    .enabled
     #@products = Product.where('name LIKE ? OR category LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%")
     render :index
   end
