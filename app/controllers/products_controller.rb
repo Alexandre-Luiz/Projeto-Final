@@ -60,6 +60,17 @@ class ProductsController < ApplicationController
     render :index
   end
 
+  def my_products
+    @user = current_user
+    @products = @user.products
+  end
+
+  def my_order
+    @product = Product.find(params[:product_id]) 
+    @user = current_user
+    @order = @product.order
+  end
+
   private
   
   def product_params

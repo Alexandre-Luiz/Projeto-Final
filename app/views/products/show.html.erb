@@ -7,7 +7,9 @@
 
 
   <div>
-    <%= button_to 'Comprar', new_product_order_path(params[:id]), method: :get %>
+    <% if current_user != @product.user %>
+      <%= button_to 'Comprar', new_product_order_path(params[:id]), method: :get %>
+    <% end %>
   </div>
   <div>
     <%= link_to 'Fazer uma pergunta', new_product_question_path(params[:id]) %>

@@ -6,11 +6,16 @@ Rails.application.routes.draw do
   get 'products/search', to: 'products#search'
   resources :products do
     resources :orders, only: [:show, :new, :create]
-  
+    
+    get 'my_products', on: :collection
+    get 'my_order', to: 'products#my_order'
+
     resources :questions, only: [:new, :create] do
       resources :answers, only: [:new, :create]
     end
   end
-
+  
   resources :users, only: [:show]
+  
+
 end

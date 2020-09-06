@@ -1,0 +1,10 @@
+<h1> Resumo do produto: </h1>
+
+  <%= render partial: 'products/product_details', locals: { product: @product } %>
+
+<h2> Pedido para análise: </h2>
+
+  <%= render partial: 'orders/order_details', locals: { order: @order } %>
+
+
+  <%= button_to 'Cancelar' %> | <%= button_to 'Aceitar' %>

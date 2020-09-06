@@ -1,0 +1,20 @@
+<div>
+  <h1> Seus produtos anunciados: </h1>
+  <i> Caso o produto tenha pedido em aberto haverá link para análise </i>
+</div>
+<p>
+  <ul>
+    <% @products.each do |product| %>
+      <div>
+        <li> <%= product.name %> 
+        <% if product.enabled? %>
+          - <%= link_to 'Detalhes', product_path(product.id) %>
+        <% else %>
+          - <%= link_to 'Analisar', product_my_order_path(product.id) %>
+        <% end %>
+        </li>
+      </div>
+    <% end %>
+  </ul>
+</p>
+

@@ -7,5 +7,7 @@ pt-BR:
       order:
         discount: Desconto
         payment_method: Forma de pagamento
-        address: Endereço
+        address: Endereço para entrega
         comment: Comentários
+        user: Comprador
+        final_price: Preço final

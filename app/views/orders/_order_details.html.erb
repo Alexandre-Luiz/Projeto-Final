@@ -1,0 +1,11 @@
+<div>
+  <ul>
+    <li> <%= "#{Order.human_attribute_name(:user)}: #{order.user.name}" %> </li>
+    <li> <%= "#{Order.human_attribute_name(:payment_method)}: #{order.payment_method}" %> </li>
+    <li> Preço Original: <%= number_to_currency @order.product_price %> </li>
+    <li> <%= "#{Order.human_attribute_name(:discount)}: #{number_to_currency order.discount}" %> </li>
+    <li> <%= "#{Order.human_attribute_name(:final_price)}: #{number_to_currency order.final_price}" %> </li>
+    <li> <%= "#{Order.human_attribute_name(:address)}: #{ order.address }" %> </li>
+    <li> <%= "#{Order.human_attribute_name(:comment)}: #{ order.comment }" %> </li>
+  </ul>
+</div>

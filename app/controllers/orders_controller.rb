@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
     
     @order.user = current_user
     @order.product = @product
+    @order.final_price = @order.price_calculation
 
     @order.save!
     # Tornando o anúncio indisponível após criação do pedido
@@ -27,7 +28,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order)
-          .permit(:discount, :payment_method, :address, :comment, :product_price)
+          .permit(:discount, :payment_method, :address, :comment, :product_price, :final_price)
   end
 end
 
