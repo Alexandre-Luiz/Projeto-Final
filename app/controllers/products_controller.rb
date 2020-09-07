@@ -66,8 +66,8 @@ class ProductsController < ApplicationController
   end
 
   def my_order
-    @product = Product.find(params[:product_id]) 
     @user = current_user
+    @product = Product.find(params[:product_id]) 
     @order = @product.order
   end
 

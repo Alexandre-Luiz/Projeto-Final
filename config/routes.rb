@@ -17,5 +17,9 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show]
   
+  resources :orders, only: [] do
+    post 'accept', on: :member
+    post 'decline', on: :member
+  end
 
 end

@@ -76,6 +76,8 @@ feature 'User view on his profile, his products' do
     expect(page).to have_content('Dinheiro')
     expect(page).to have_content('Desconto que combinamos no almoço')
     expect(page).to have_content('Rua do matão, 100')
+  end
 
+  xscenario 'only the seller can access the order' do
   end
 end
