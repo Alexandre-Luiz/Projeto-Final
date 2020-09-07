@@ -2,8 +2,10 @@ require 'rails_helper'
 
 feature 'User view his operations' do
   scenario 'regarding his announcements - successfully' do
-    user = User.create!(name: 'Fernando', password: '123456789', email: 'fernando@test.com')
-    another_user = User.create!(name: 'Rafael', password: '123456789', email: 'rafael@test2.com')
+    user = User.create!(name: 'Fernando', password: '123456789', email: 'fernando@test.com',role: 'Estagiário',
+                        department: 'Recursos humanos')
+    another_user = User.create!(name: 'Rafael', password: '123456789', email: 'rafael@test2.com', role: 'Estagiário',
+                                department: 'Marketing')
     product = Product.create!(name: 'Teclado mecânico Logitech', category: 'Eletrônicos', 
                               description: 'Teclado com pouquíssimo uso. Possui RGB', 
                               price: 200, user: user, status: :disabled)
@@ -26,7 +28,6 @@ feature 'User view his operations' do
     click_on 'Perfil'
     click_on 'Histórico de transações'
 
-    expect(page).to have_content('Bola de futebol')
     expect(page).to have_content('Bola de futebol')
     expect(page).to have_content('PS4')
 

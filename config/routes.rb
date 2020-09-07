@@ -7,9 +7,12 @@ Rails.application.routes.draw do
   resources :products do
     resources :orders, only: [:show, :new, :create]
     
+    get 'my_transactions', on: :collection # AQUI
+    
     get 'my_products', on: :collection
     get 'my_order', to: 'products#my_order'
-
+    
+    
     resources :questions, only: [:new, :create] do
       resources :answers, only: [:new, :create]
     end
@@ -20,7 +23,7 @@ Rails.application.routes.draw do
   resources :orders, only: [] do
     post 'accept', on: :member
     post 'decline', on: :member
-    get 'my_transactions', to: 'order#my_transactions'
+    
   end
 
 end
