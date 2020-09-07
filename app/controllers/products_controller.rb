@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  
+  before_action :must_be_same_company, only: [:show]
+
   def index
     email_domain = current_user.email.split("@").last 
     @products = Product.joins(:user).where("users.email like ?", "%#{email_domain}")
@@ -76,6 +77,13 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product)
           .permit(:name, :category, :description, :price, :user_id)
+  end
+
+  def must_be_same_company
+    @product = Product.find(params[:id])
+    user_domain = current_user.email.split("@").last
+    product_owner_domain = @product.user.email.split("@").last
+    redirect_to products_path, notice: 'Produto inexistente' if user_domain != product_owner_domain
   end
 
 end

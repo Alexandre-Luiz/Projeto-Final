@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :orders, only: [] do
     post 'accept', on: :member
     post 'decline', on: :member
+    get 'my_transactions', to: 'order#my_transactions'
   end
 
 end

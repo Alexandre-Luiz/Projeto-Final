@@ -63,4 +63,22 @@ feature 'User view all products' do
 
     expect(current_path).to eq products_path
   end
+
+  scenario 'and cant access products of different companies' do
+    user = User.create!(name: 'Fulano', password: '123456789', 
+                        email: 'fulano@test.com', role: 'Estagiário',
+                        department: 'Recursos humanos')
+    another_user = User.create!(name: 'Rafael', password: '123456789', 
+                                email: 'rafael@test2.com', department: 'Logística',
+                                role: 'Gerente')
+    Product.create!(name: 'Teclado mecânico Logitech', category: 'Eletrônicos', 
+                    description: 'Teclado com pouquíssimo uso. Possui RGB', 
+                    price: 200, user: another_user)
+
+    login_as(user, scope: :user)
+    visit product_path(Product.last)
+
+    expect(page).to have_content('Produto inexistente')
+    expect(current_path).to eq products_path
+  end 
 end
