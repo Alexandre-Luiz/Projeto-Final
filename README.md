@@ -51,7 +51,7 @@
 ### Future/in progress features
 
 - [] Implement picture of the products
-- [] Stylization with bootstrap
+- [x] Stylization with bootstrap
 
 ### Author
 
