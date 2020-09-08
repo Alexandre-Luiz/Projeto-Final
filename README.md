@@ -50,8 +50,8 @@
 
 ### Future/in progress features
 
-- [] Implement picture of the products
-- [x] Stylization with bootstrap
+- [ ] Implement picture of the products
+- [ ] Stylization with bootstrap
 
 ### Author
 
