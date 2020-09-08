@@ -59,4 +59,4 @@
 
 ### Acknowledgements
 
-<p align="justify"> This application was offered and made during the [Treinadev](https://www.treinadev.com.br/home) program offered by [CampusCode](https://www.campuscode.com.br/). </p>
+<p align="justify"> This application was offered and made during the <a href="https://www.treinadev.com.br/home">TreinaDev</a> program offered by <a href="https://www.campuscode.com.br/">CampusCode</a>. </p>
