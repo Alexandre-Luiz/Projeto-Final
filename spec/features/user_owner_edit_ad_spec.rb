@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User owner delete his ad' do
+feature 'User owner edit his ad' do
   scenario 'sucessfully' do
     user = User.create!(name: 'Fulano', password: '123456789', 
                         email: 'fulano@test.com', role: 'Estagiário',
@@ -53,20 +53,16 @@ feature 'User owner delete his ad' do
     another_user = User.create!(name: 'Beltrano', password: '123456789', 
                                 email: 'beltrano@test.com', role: 'Diretor',
                                 department: 'Recursos humanos')
-    Product.create!(name: 'Teclado', category: 'Eletrônicos', 
+    product = Product.create!(name: 'Teclado', category: 'Eletrônicos', 
                     description: 'Teclado membrana Bright', price: '20', user: another_user)
 
     login_as(user, scope: :user)
-    visit root_path
-    click_on 'Ver produtos'
-    find_link('Ver detalhes', href: product_path(Product.last)).click
-    click_on 'Editar'
+    visit edit_product_path(product)
     fill_in 'Produto', with: 'Relógio'
     click_on 'Cadastrar'
 
     expect(current_path).to eq product_path(Product.last)
     expect(page).to have_content('Sem autorização para editar este anúncio.')
-
   end
 
 end

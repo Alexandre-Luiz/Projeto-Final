@@ -15,6 +15,9 @@ feature 'User view his operations' do
     another_another_product = Product.create!(name: 'PS4', category: 'Brinquedos e games', 
                                               description: 'Está em perfeitas condições. Acompanha dois jogos.', 
                                               price: 3000, user: user, status: :disabled)
+    product_4 = Product.create!(name: 'Atari', category: 'Brinquedos e games ', 
+                                      description: 'Muito bem conservado', 
+                                      price: 5000, user: another_user, status: :disabled)
     order = Order.create!(discount: 100, payment_method: 'Dinheiro', address: 'Rua do matão, 100',
                           comment: 'Desconto que combinamos no almoço', user: another_user, product: product, status: :in_progress)
     another_order = Order.create!(discount: 200, payment_method: 'Transferência bancária', address: 'Av. Paulista, 100',
@@ -22,6 +25,10 @@ feature 'User view his operations' do
     another_another_order = Order.create!(discount: 500, payment_method: 'Dinheiro', address: 'Rua Verediana, 100',
                                           comment: 'É para o aniversário do meu filho. Ele é o próximo neymar', 
                                           user: another_user, product: another_another_product, status: :canceled)
+    order_4 = Order.create!(discount: 500, payment_method: 'Dinheiro', address: 'Rua Buenos Aires, 100',
+                                          comment: 'Sou colecionador, gostei das condições.', 
+                                          user: user, product: product_4, status: :completed)
+
 
     login_as(user, scope: :user)
     visit root_path
@@ -30,6 +37,7 @@ feature 'User view his operations' do
 
     expect(page).to have_content('Bola de futebol')
     expect(page).to have_content('PS4')
+    expect(page).to have_content('Atari')
 
   end
 end

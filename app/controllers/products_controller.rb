@@ -87,5 +87,15 @@ class ProductsController < ApplicationController
           .permit(:name, :category, :description, :price, :user_id)
   end
 
+  def must_be_same_company
+    @product = Product.find(params[:id])
+    user_domain = current_user.email.split("@").last
+    product_owner_domain = @product.user.email.split("@").last
+    redirect_to products_path, notice: 'Produto inexistente' if user_domain != product_owner_domain
+  end
 
+  def must_be_seller
+    @product = Product.find(params[:id])
+    redirect_to products_path if @product.user != current_user
+  end
 end
