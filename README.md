@@ -7,7 +7,7 @@
 - [How to run the application](#how-to-run-the-application)
 - [How to use](#how-to-use)
 - [Testing](#testing)
-- [Future/in progress features](#Future/in progress features)
+- [Future/in progress features](#Future/in-progress-features)
 - [Author](#author)
 - [Acknowledgements](#Acknowledgements)
 
