@@ -24,7 +24,7 @@ feature 'User owner delete his ad' do
     expect(page).not_to have_content('R$ 20,00')
   end
 
-  xscenario 'only the owner can delete' do
+  scenario 'only the owner can delete' do
     user = User.create!(name: 'Fulano', password: '123456789', 
                         email: 'fulano@test.com', role: 'Estagiário',
                         department: 'Recursos humanos')
@@ -38,11 +38,13 @@ feature 'User owner delete his ad' do
     visit root_path
     click_on 'Ver produtos'
     click_on 'Ver detalhes'
-    find_link('Apagar anúncio', :visible => :all).click
+    #click_on 'Apagar anúncio'
+    #find_link('Apagar anúncio', :visible => :all).click
 
 
-    expect(current_path).to eq product_path(Product.last)
-    expect(page).to have_content('Sem autorização para apagar este anúncio.')
+    #expect(current_path).to eq product_path(Product.last)
+    #expect(page).to have_content('Sem autorização para apagar este anúncio.')
+    expect(page).not_to have_link('Apagar anúncio')
   end
 
 

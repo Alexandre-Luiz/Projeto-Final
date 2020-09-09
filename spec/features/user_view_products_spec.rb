@@ -80,5 +80,27 @@ feature 'User view all products' do
 
     expect(page).to have_content('Produto inexistente')
     expect(current_path).to eq products_path
-  end 
+  end
+
+  scenario 'and can go back to homepage' do
+    user = User.create!(name: 'Fulano', password: '123456789', 
+                        email: 'fulano@test.com', role: 'Estagiário',
+                        department: 'Recursos humanos')
+    login_as(user, scope: :user)
+    visit products_path
+    click_on 'Voltar'
+
+    expect(current_path).to eq root_path
+  end
+
+  scenario 'and can access his profile from index page' do
+    user = User.create!(name: 'Fulano', password: '123456789', 
+                        email: 'fulano@test.com', role: 'Estagiário',
+                        department: 'Recursos humanos')
+    login_as(user, scope: :user)
+    visit products_path
+    click_on 'Perfil'
+
+    expect(current_path).to eq user_path(user)
+  end
 end

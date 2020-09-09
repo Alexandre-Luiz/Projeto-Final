@@ -1,5 +1,6 @@
 <div>
-  <%= link_to 'Voltar', root_path %>
+  <%= link_to 'Sair', destroy_user_session_path, method: :delete %> | 
+  <%= link_to 'Perfil', user_path(id: current_user.id) %>
 </div>
 
 <h1 class="text-center" > Produtos Anunciados </h1>
@@ -37,3 +38,6 @@
   </div>
 </div>
 
+<div>
+  <%= link_to 'Voltar', root_path %>
+</div>

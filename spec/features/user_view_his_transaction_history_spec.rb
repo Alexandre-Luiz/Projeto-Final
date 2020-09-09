@@ -38,6 +38,26 @@ feature 'User view his operations' do
     expect(page).to have_content('Bola de futebol')
     expect(page).to have_content('PS4')
     expect(page).to have_content('Atari')
+    # Pedido ainda não foi analisado e não pode aparecer no histórico
+    expect(page).not_to have_content('Teclado mecânico Logitech') 
+  end
 
+  scenario 'Only the seller or buyer can acess the finished order' do
+    user = User.create!(name: 'Fernando', password: '123456789', email: 'fernando@test.com',role: 'Estagiário',
+                        department: 'Recursos humanos')
+    another_user = User.create!(name: 'Rafael', password: '123456789', email: 'rafael@test2.com', role: 'Estagiário',
+                                department: 'Marketing')
+    another_another_user = User.create!(name: 'Pedro', password: '123456789', email: 'pedro@test2.com', role: 'Estagiário',
+                                        department: 'Financeiro')
+    product = Product.create!(name: 'Bola de futebol', category: 'Esporte', 
+                              description: 'Bola oficial da copa 2014. Nunca foi usada', 
+                              price: 500, user: another_another_user, status: :disabled)
+    order = Order.create!(discount: 200, payment_method: 'Transferência bancária', address: 'Av. Paulista, 100',
+                          comment: 'Tudo que posso pagar', user: another_user, product: product, status: :completed)
+
+    login_as(user, scope: :user)
+    visit product_order_path(product, order)
+
+    expect(current_path).to eq products_path
   end
 end

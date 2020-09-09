@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :must_be_seller_or_buyer, only: [:show]
 
   def show
     @product = Product.find(params[:product_id])
@@ -45,6 +46,14 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order)
           .permit(:discount, :payment_method, :address, :comment, :product_price, :final_price)
+  end
+
+  def must_be_seller_or_buyer
+    @product = Product.find(params[:product_id])
+    @order = @product.order
+    if current_user != @product.user && current_user != @order.user
+      redirect_to products_path, notice: 'Produto inexistente'
+    end
   end
 end
 

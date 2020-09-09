@@ -9,8 +9,6 @@ class UsersController < ApplicationController
 
   def check_user
     @user = User.find(params[:id])
-    user_domain = current_user.email.split("@").last
-    profile_domain = @user.email.split("@").last
-    redirect_to root_path, notice: 'Usuário Inexistente' if user_domain != profile_domain
+    redirect_to root_path, notice: 'Usuário Inexistente' if @user != current_user
   end
 end

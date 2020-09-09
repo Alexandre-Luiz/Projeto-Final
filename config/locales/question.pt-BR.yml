@@ -1,0 +1,8 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      question: Pergunta
+    attributes:
+      question:
+        content: Pergunta

@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :must_be_same_company, only: [:show]
+  before_action :must_be_seller, only: [:my_order]
 
   def index
     email_domain = current_user.email.split("@").last 
@@ -72,13 +73,11 @@ class ProductsController < ApplicationController
     @order = @product.order
   end
 
-  
   def my_transactions
     @user = current_user
     @products = @user.products
     @orders = Order.all
   end
-
 
   private
   
@@ -87,15 +86,12 @@ class ProductsController < ApplicationController
           .permit(:name, :category, :description, :price, :user_id)
   end
 
-  def must_be_same_company
-    @product = Product.find(params[:id])
-    user_domain = current_user.email.split("@").last
-    product_owner_domain = @product.user.email.split("@").last
-    redirect_to products_path, notice: 'Produto inexistente' if user_domain != product_owner_domain
-  end
 
   def must_be_seller
-    @product = Product.find(params[:id])
-    redirect_to products_path if @product.user != current_user
+    @product = Product.find(params[:product_id])
+    @order = @product.order
+    if @product.user != current_user
+      redirect_to products_path, notice: 'Produto inexistente'
+    end
   end
 end
