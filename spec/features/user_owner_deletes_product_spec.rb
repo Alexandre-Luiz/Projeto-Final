@@ -66,7 +66,7 @@ feature 'User owner delete his ad' do
     click_on 'Apagar anúncio'
     
     expect(current_path).to eq product_path(product)
-    expect(page).to have_content('Produto não pode ser excluído enquanto houver pedido pendente.')
+    expect(page).to have_content('Analise o pedido pendente primeiro.')
   end 
 
 end

@@ -19,10 +19,14 @@ class OrdersController < ApplicationController
     @order.product = @product
     @order.final_price = @order.price_calculation
 
-    @order.save!
-    # Tornando o anúncio indisponível após criação do pedido
-    @product.disabled!
-    redirect_to [@product, @order], notice: 'Pedido realizado com sucesso!'
+    if @order.save
+      # Tornando o anúncio indisponível após criação do pedido
+      @product.disabled!
+      redirect_to [@product, @order], notice: 'Pedido realizado com sucesso!'
+    else
+      render :new
+    end
+
   end
 
   def accept

@@ -115,7 +115,24 @@ feature 'User starts a buy order' do
     expect(current_path).to eq product_path(Product.last)
   end
 
-  xscenario 'payment_method cant be blank' do
+  scenario 'payment_method cant be blank' do
+    user = User.create!(name: 'Fulano', password: '123456789', 
+                        email: 'fulano@test.com', role: 'Estagiário',
+                        department: 'Recursos humanos')
+    another_user = User.create!(name: 'Beltrano', password: '123456789', 
+                                email: 'beltrano@test.com', role: 'Diretor',
+                                department: 'Recursos humanos')
+    product = Product.create!(name: 'Piano', category: 'Outros', 
+                              description: 'Piano Yamaha em ótimas condições', price: '5000', user: another_user)
+
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Ver produtos'
+    find_link('Ver detalhes', href: product_path(Product.first)).click
+    click_on 'Comprar'
+    click_on 'Efetuar compra'
+
+    expect(page).to have_content('Forma de pagamento não pode ficar em branco')
 
   end 
 

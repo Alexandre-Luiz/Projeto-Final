@@ -46,7 +46,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.disabled?
       # Lembrar de criar novo enum para fazer suspensão do produto
-      flash.alert = 'Produto não pode ser excluído enquanto houver pedido pendente.'
+      flash.alert = 'Analise o pedido pendente primeiro.'
       render :show
     elsif current_user == @product.user
       @product.destroy

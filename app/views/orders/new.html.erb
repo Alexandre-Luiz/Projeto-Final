@@ -1,10 +1,17 @@
+<% if @order.errors.any? %>
+  <ul>
+    <% @order.errors.full_messages.each do |message| %>
+      <li> <%= message %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <div>
   <%= render partial: 'products/product_details', locals: { product: @product } %>
 </div>
 
-
 <div>
-  <h3> Por favor preencha as informações adicionais para efetivação da compra: </h3>
+  <h3> Por favor preencha as informações adicionais para efetivação da oferta de compra: </h3>
 </div>
 
 <div>
@@ -20,7 +27,7 @@
     </div>
     <div class="form-group">
       <div>
-        <%= form.label :discount, 'Desconto' %> <i> (se houver, em reais) </i>
+        <%= form.label :discount, 'Desconto' %> <i> (em reais - Preencha com R$ 0 caso não haja) </i>
       </div>
         <%= form.number_field :discount %>
     </div>                               
