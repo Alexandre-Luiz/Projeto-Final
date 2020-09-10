@@ -44,12 +44,16 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
-    if current_user == @product.user
+    if @product.disabled?
+      # Lembrar de criar novo enum para fazer suspensão do produto
+      flash.alert = 'Produto não pode ser excluído enquanto houver pedido pendente.'
+      render :show
+    elsif current_user == @product.user
       @product.destroy
       redirect_to products_path
     else
       flash.alert = 'Sem autorização para apagar este anúncio.'
-      render :show 
+      render :show
     end
   end
 

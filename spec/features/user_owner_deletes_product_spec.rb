@@ -47,5 +47,26 @@ feature 'User owner delete his ad' do
     expect(page).not_to have_link('Apagar anúncio')
   end
 
+  scenario 'but cant delete a product with a in progress order' do
+    user = User.create!(name: 'Fulano', password: '123456789', 
+                        email: 'fulano@test.com', role: 'Estagiário',
+                        department: 'Recursos humanos')
+    another_user = User.create!(name: 'Beltrano', password: '123456789', 
+                                email: 'beltrano@test.com', role: 'Diretor',
+                                department: 'Recursos humanos')
+    product = Product.create!(name: 'Teclado', category: 'Eletrônicos', 
+                              description: 'Teclado membrana Bright', price: '20', user: user, status: :disabled)
+    Order.create!(discount: 5, payment_method: 'Dinheiro', address: 'Rua Pedroso alvarenga, 190', 
+                  comment: 'Pagarei pessoalmente', product: product, user: another_user, status: :in_progress)
+    
+    login_as(user, scope: :user)
+    
+    # Acessando diretamente o show 
+    visit product_path(product) 
+    click_on 'Apagar anúncio'
+    
+    expect(current_path).to eq product_path(product)
+    expect(page).to have_content('Produto não pode ser excluído enquanto houver pedido pendente.')
+  end 
 
 end
