@@ -5,7 +5,7 @@ feature 'User register product to sell'do
     user = User.create!(name: 'Fulano', password: '123456789', 
                         email: 'fulano@test.com', role: 'Estagiário',
                         department: 'Recursos humanos' )
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Ver produtos'
@@ -26,6 +26,19 @@ feature 'User register product to sell'do
 
   scenario 'but must finish his profile first' do
     user = User.create!(name: 'Fulano', password: '123456789', email: 'fulano@test.com')
+    product = Product.create!(name: 'Teclado', category: 'Eletrônicos', 
+                    description: 'Teclado membrana Bright', price: '20', user: user, status: :enabled)
+
+    login_as(user, scope: :user)
+    visit new_product_path
+    click_on 'Cadastrar'
+
+    #expect(page).not_to have_button('Cadastrar Produto')
+    expect(page).to have_content('Por favor, complete o perfil para cadastrar produto')
+  end
+
+  scenario 'and cant see the button to register' do
+    user = User.create!(name: 'Fulano', password: '123456789', email: 'fulano@test.com')
     
     login_as(user, scope: :user)
     visit root_path
@@ -33,6 +46,7 @@ feature 'User register product to sell'do
 
     expect(page).not_to have_button('Cadastrar Produto')
   end
+
 
   scenario 'must fill all fields of the form' do
     user = User.create!(name: 'Fulano', password: '123456789', 
