@@ -78,7 +78,7 @@ feature 'User starts a buy order' do
                                       description: 'Teclado com pouquíssimo uso. Possui RGB', 
                                       price: 200, user: another_user, status: :enabled)
     Order.create!(discount: 10, payment_method: 'Dinheiro', address: 'Rua Pedroso alvarenga, 190', 
-                  comment: 'Pagarei pessoalmente na nossa empresa', product: product, user: another_user)
+                  comment: 'Pagarei pessoalmente na nossa empresa', product: product, user: another_user, final_price: product.price)
 
 
     login_as(user, scope: :user)
@@ -133,11 +133,53 @@ feature 'User starts a buy order' do
     click_on 'Efetuar compra'
 
     expect(page).to have_content('Forma de pagamento não pode ficar em branco')
-
   end 
 
+  scenario 'discount must be positive' do
+    user = User.create!(name: 'Fulano', password: '123456789', 
+                        email: 'fulano@test.com', role: 'Estagiário',
+                        department: 'Recursos humanos')
+    another_user = User.create!(name: 'Beltrano', password: '123456789', 
+                                email: 'beltrano@test.com', role: 'Diretor',
+                                department: 'Recursos humanos')
+    product = Product.create!(name: 'Piano', category: 'Outros', 
+                              description: 'Piano Yamaha em ótimas condições', price: '5000', user: another_user)
+
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Ver produtos'
+    find_link('Ver detalhes', href: product_path(Product.first)).click
+    click_on 'Comprar'
+    select 'Transferência bancária', from: 'Forma de pagamento'
+    fill_in 'Desconto', with: -50
+    click_on 'Efetuar compra'
+
+    expect(page).to have_content('Desconto deve ser maior que 0')
+  end
+
+  scenario 'discount must be less than the product price' do
+    user = User.create!(name: 'Fulano', password: '123456789', 
+                        email: 'fulano@test.com', role: 'Estagiário',
+                        department: 'Recursos humanos')
+    another_user = User.create!(name: 'Beltrano', password: '123456789', 
+                                email: 'beltrano@test.com', role: 'Diretor',
+                                department: 'Recursos humanos')
+    product = Product.create!(name: 'Piano', category: 'Outros', 
+                              description: 'Piano Yamaha em ótimas condições', price: '5000', user: another_user)
+
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Ver produtos'
+    find_link('Ver detalhes', href: product_path(Product.first)).click
+    click_on 'Comprar'
+    select 'Transferência bancária', from: 'Forma de pagamento'
+    fill_in 'Desconto', with: 6000
+    click_on 'Efetuar compra'
+
+    expect(page).to have_content('Desconto não pode ser maior que o preço do produto')
+  end
+
   xscenario 'owner changes price of the product after order' do
-    
   end
 
 end

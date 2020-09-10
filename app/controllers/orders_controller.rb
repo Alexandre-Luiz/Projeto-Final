@@ -26,7 +26,6 @@ class OrdersController < ApplicationController
     else
       render :new
     end
-
   end
 
   def accept
