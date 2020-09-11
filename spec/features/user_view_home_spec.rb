@@ -35,7 +35,8 @@ feature 'User view home page'do
   end
 
   scenario 'user can logout' do
-    user = User.create!(name: 'Fulano', password: '123456789', email: 'fulano@test.com')
+    user = User.create!(name: 'Fulano', password: '123456789', 
+                        email: 'fulano@test.com', role: 'Analista', department: 'P&D')
     
     login_as(user, scope: :user)
     visit root_path

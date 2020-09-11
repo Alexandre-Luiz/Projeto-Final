@@ -3,6 +3,15 @@
       <%= link_to 'Editar', edit_product_path(params[:id]) %> | 
       <%= link_to 'Apagar anúncio', product_path(params[:id]), method: :delete, data: {confirm: 'Tem certeza que deseja apagar o anúncio?'} %>
     <% end %>
+
+
+    <% if @product.user == current_user && @product.enabled? %>
+      | <%= link_to 'Suspender anúncio', suspend_product_path(params[:id]), method: :post %> 
+    
+    <% elsif @product.user == current_user && @product.suspended? %>
+      | <%= link_to 'Habilitar anúncio', suspend_product_path(params[:id]), method: :post %>
+        <h5 style="color:red" > Este anúncio está suspenso. Caso queira reativá-lo, clique em habilitar anúncio </h5>
+    <% end %>
   </div>
 
   <%= render partial: 'product_details', locals: { product: @product } %>

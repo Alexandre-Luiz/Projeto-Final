@@ -83,6 +83,22 @@ class ProductsController < ApplicationController
     @orders = Order.all
   end
 
+  def suspend
+    @product = Product.find(params[:id])
+    #@order = @product.order
+    if @product.user == current_user && @product.enabled?
+      @product.suspended!
+      @product.save!
+      redirect_to @product, notice: 'Anúncio suspenso com sucesso'
+    elsif @product.user == current_user && @product.suspended?
+      @product.enabled!
+      @product.save!
+      redirect_to @product, notice: 'Anúncio habilitado com sucesso'
+    else
+      redirect_to root_path, notice: 'Sem autorização'
+    end
+  end
+
   private
   
   def product_params

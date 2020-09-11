@@ -7,10 +7,11 @@ Rails.application.routes.draw do
   resources :products do
     resources :orders, only: [:show, :new, :create]
     
-    get 'my_transactions', on: :collection # AQUI
-    
+    get 'my_transactions', on: :collection
     get 'my_products', on: :collection
     get 'my_order', to: 'products#my_order'
+
+    post 'suspend', on: :member
     
     resources :questions, only: [:new, :create] do
       resources :answers, only: [:new, :create]
