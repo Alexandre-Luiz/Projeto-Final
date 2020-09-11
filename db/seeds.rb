@@ -33,13 +33,13 @@ Question.create!(content: 'Qual o tamanho? Serve em alguem de 2,20?', user: user
 
 # Usuários e produtos empresa 2
 user_4 = User.create!(name: 'João', password: '123456789', 
-                      email: 'João@facebook.com', role: 'Estagiário',
+                      email: 'joao@facebook.com', role: 'Estagiário',
                       department: 'Segurança da informação')
 user_5 = User.create!(name: 'Paula', password: '123456789', 
-                      email: 'Paula@facebook.com', role: 'Analista',
+                      email: 'paula@facebook.com', role: 'Analista',
                       department: 'Financeiro')
 user_6 = User.create!(name: 'Isabella', password: '123456789', 
-                      email: 'Isabella@facebook.com', role: 'Gerente',
+                      email: 'isabella@facebook.com', role: 'Gerente',
                       department: 'Criptografia')
 
 product_5 = Product.create!(name: 'MacBook pro 16 polegadas', category: 'Eletrônicos', 
