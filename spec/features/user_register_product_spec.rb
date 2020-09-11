@@ -47,7 +47,6 @@ feature 'User register product to sell'do
     expect(page).not_to have_button('Cadastrar Produto')
   end
 
-
   scenario 'must fill all fields of the form' do
     user = User.create!(name: 'Fulano', password: '123456789', 
                         email: 'fulano@test.com', role: 'Estagiário',
@@ -63,5 +62,24 @@ feature 'User register product to sell'do
     expect(page).to have_content('Categoria não pode ficar em branco')
     expect(page).to have_content('Descrição não pode ficar em branco')
     expect(page).to have_content('Preço não pode ficar em branco')
+  end
+
+  scenario 'and can attach an image' do
+    user = User.create!(name: 'Fulano', password: '123456789', 
+                        email: 'fulano@test.com', role: 'Estagiário',
+                        department: 'Recursos humanos' )
+
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Ver produtos'
+    click_on 'Cadastrar Produto'
+    fill_in 'Produto', with: 'Furadeira'
+    select 'Ferramentas', from: 'Categoria'
+    fill_in 'Descrição', with: 'Acompanha kit de brocas'
+    fill_in 'Preço', with: '200'
+    attach_file 'Foto', Rails.root.join('spec/support/furadeira.png')
+    click_on 'Cadastrar'
+
+    expect(page).to have_css('img[src*="furadeira.png"]')
   end
 end

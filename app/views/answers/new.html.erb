@@ -1,3 +1,11 @@
+<% if @answer.errors.any? %>
+  <ul>
+    <% @answer.errors.full_messages.each do |message| %>
+      <li> <%= message %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <div>
   <h2> Respondendo pergunta sobre - <%= @product.name %> </h2>
 </div>

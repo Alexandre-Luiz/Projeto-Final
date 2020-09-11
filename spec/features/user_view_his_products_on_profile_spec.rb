@@ -78,6 +78,4 @@ feature 'User view on his profile, his products' do
     expect(page).to have_content('Rua do matão, 100')
   end
 
-  xscenario 'only the seller can access the order' do
-  end
 end

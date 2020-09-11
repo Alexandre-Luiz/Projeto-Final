@@ -7,37 +7,49 @@
 <% end %>
 
 <div>
-<%= form_with model: product, local: true do |form| %>
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-  <div>
-    <%= form.label :category, 'Categoria' %>
-    <%= form.select :category, 
-                     options_for_select([['Eletrônicos'],
-                                        ['Automotivo'],
-                                        ['Esporte'],
-                                        ['Cozinha'],
-                                        ['Papelaria e Escritório'],
-                                        ['Roupas e vestuário'],
-                                        ['Ferramentas'],
-                                        ['Brinquedos e games'],
-                                        ['Outros']]), prompt: 'Selecione uma categoria' %>
-  </div>
-  <div>
-    <%= form.label :description, 'Descrição' %>
-    <%= form.text_area :description %>
-  </div>
-  <div>
-    <%= form.label :price, 'Preço' %>
-    <%= form.number_field :price %>
-  </div>
+  <%= form_with model: product, local: true do |form| %>
+    <div class="form-group">
+      <div>
+        <%= form.label :name %>
+      </div>
+        <%= form.text_field :name %>
+    </div>
+    <div class="form-group">
+      <div>
+        <%= form.label :category %>
+      </div>
+        <%= form.select :category, 
+                        options_for_select([['Eletrônicos'],
+                                            ['Automotivo'],
+                                            ['Esporte'],
+                                            ['Cozinha'],
+                                            ['Papelaria e Escritório'],
+                                            ['Roupas e vestuário'],
+                                            ['Ferramentas'],
+                                            ['Brinquedos e games'],
+                                            ['Outros']]), prompt: 'Selecione uma categoria' %>
+    </div>
+    <div class="form-group">
+      <div>
+        <%= form.label :description %>
+      </div>
+        <%= form.text_area :description %>
+    </div>
+    <div class="form-group">
+      <div>
+        <%= form.label :price %>
+      </div>
+      <%= form.number_field :price %>
+    </div>
 
-  <%= form.submit 'Cadastrar '%>
-<% end %>
-</div>
+    <div>
+      <%= form.label :image, 'Foto' %>
+      <%= form.file_field :image %>
+    </div>
 
+    <%= form.submit 'Cadastrar '%>
+  <% end %>
+</form>
 <div>
   <%= link_to 'Voltar', products_path %>
 </div>

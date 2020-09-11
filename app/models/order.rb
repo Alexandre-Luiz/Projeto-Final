@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   validates :payment_method,
              presence: true
   validates :discount, 
-             numericality: { greater_than: 0 }
+             numericality: { greater_than_or_equal_to: 0 }
   validate :discount_vs_price
 
   enum status: { in_progress: 0, completed: 10, canceled: 20 }

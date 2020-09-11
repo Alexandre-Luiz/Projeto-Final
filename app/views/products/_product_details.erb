@@ -13,3 +13,9 @@
     <li> <%= "#{Product.human_attribute_name(:category)}: #{product.category}" %> </li>
     <li> <%= "#{Product.human_attribute_name(:description)}: #{product.description}" %> </li>
   </ul>
+
+<div>
+  <% if product.image.attached? %>
+    <%= image_tag product.image, style: "width: 300px; height: 300px"%>
+  <% end %>
+</div>

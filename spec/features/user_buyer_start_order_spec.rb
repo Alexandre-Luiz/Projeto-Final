@@ -154,7 +154,7 @@ feature 'User starts a buy order' do
     fill_in 'Desconto', with: -50
     click_on 'Efetuar compra'
 
-    expect(page).to have_content('Desconto deve ser maior que 0')
+    expect(page).to have_content('Desconto deve ser maior ou igual a 0')
   end
 
   scenario 'discount must be less than the product price' do
@@ -177,9 +177,6 @@ feature 'User starts a buy order' do
     click_on 'Efetuar compra'
 
     expect(page).to have_content('Desconto não pode ser maior que o preço do produto')
-  end
-
-  xscenario 'owner changes price of the product after order' do
   end
 
 end
